@@ -50,7 +50,7 @@ function Header() {
             <NavbarBrand>
                 {/* Uncomment this line if you want to use a logo */}
                 <Image src={'/logo.svg'} alt='logo' width={40} height={40}/>
-                <h2 className='font-bold text-2xl text-primary ml-3'>StoryStream</h2>
+                <h2 className='font-bold text-2xl text-primary ml-3 hidden sm:block'>StoryStream</h2>
             </NavbarBrand>
         </NavbarContent>
 

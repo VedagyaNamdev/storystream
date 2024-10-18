@@ -5,7 +5,7 @@ import React from 'react';
 
 function Hero() {
   return (
-    <div className='px-6 sm:px-10 md:px-28 lg:px-44 mt-10 h-screen'>
+    <div className='px-6 sm:px-10 md:px-28 lg:px-44 mt-20 h-screen'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
         
         <div>
@@ -32,13 +32,13 @@ function Hero() {
         </div>
 
         {/* Image container */}
-        <div className='flex justify-center md:justify-start items-center'>
+        <div className='flex justify-center items-center'>
           <Image
-            src="/book.png"
+            src="/hero.png"
             alt="hero"
             width={400}
             height={400}
-            className="hidden md:block"
+            className="hero-image"
           />
         </div>
       </div>

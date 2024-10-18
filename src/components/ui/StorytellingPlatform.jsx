@@ -78,7 +78,7 @@ const StorytellingPlatform = () => {
         <Label htmlFor="genre"><b>Genre</b></Label>
         <Select onValueChange={setGenre} value={genre}>
           <SelectTrigger id="genre">
-            <SelectValue placeholder="Select a genre" />
+            <SelectValue placeholder="Select a genre for your story" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="adventure">Adventure</SelectItem>
@@ -91,7 +91,7 @@ const StorytellingPlatform = () => {
       </div>
 
       <div>
-        <Label htmlFor="age"><b>Your Age </b>(in years)</Label> {/* New Age Label */}
+        <Label htmlFor="age"><b>Your Age </b></Label> {/* New Age Label */}
         <Input
           id="age"
           type="number" // Number input for age
@@ -126,7 +126,7 @@ const StorytellingPlatform = () => {
       </div>
 
       <div>
-        <Label htmlFor="startingPoint"><b>Starting Point</b> (To give the story a directional start)</Label>
+        <Label htmlFor="startingPoint"><b>Povide Starting Point</b> ( To give the story a directional start )</Label>
         <Input
           id="startingPoint"
           placeholder="Enter the starting point of your story"
@@ -136,7 +136,7 @@ const StorytellingPlatform = () => {
       </div>
 
       <div>
-        <Label><b>Must-Have Plot Points</b> (Key points that you want the story to have)</Label>
+        <Label><b>Must-Have Plot Points</b> ( Key points that you want the story to have )</Label>
         {plotPoints.map((point, index) => (
           <div key={index} className="flex space-x-2 mb-2">
             <Input

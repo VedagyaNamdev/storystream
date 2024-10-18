@@ -5,10 +5,10 @@ export default function Page() {
   return(
     
 
-<div className='flex flex-row items-center justify-center gap-5 py-20'>
+<div className='flex flex-row items-center justify-center gap-10 py-20'>
 
   <Image
-  src={'/book-colorful.png'}
+  src={'/login.png'}
   alt='login'
   width={450}
   height={450}

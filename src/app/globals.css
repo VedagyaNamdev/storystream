@@ -17,3 +17,22 @@ body {
     --radius: 0.5rem;
   }
 }
+
+.hero-image {
+  width: 400px;
+  height: 400px;
+  display: none; /* This hides the image for small screens */
+}
+
+@media (min-width: 768px) {
+  .hero-image {
+    display: block;
+    border-radius: 20%; /* Optional: This gives a soft, circular look */
+    box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.2); /* Blurry shadow around the image */
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  .hero-image:hover {
+    box-shadow: 0 0 60px 30px rgba(0, 0, 0, 0.3); /* Intensifies blur on hover */
+  }
+}
+
