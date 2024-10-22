@@ -53,24 +53,42 @@ export async function generateStory({ genre, age, characters, startingPoint, plo
 }
 
 export async function expandStory({ story, title }) {
-  const prompt = `Expand on the following story titled "${title}": ${story}. Add more details, dialogue, or plot elements while maintaining the original tone and theme. Do not create a new title.`;
-
-  try {
-    const result = await model.generateContent(prompt, generationConfig);
-    const response = await result.response;
-    const expandedStory = response.text();
-
-    if (!expandedStory) {
-      throw new Error('No expanded story generated');
-    }
-
-    return {
-      expandedStory,
-    };
-  } catch (error) {
-    console.error('Error expanding story:', error);
-    throw error;
-  }
-}
+   // Extract the last few sentences of the previous chapter to maintain continuity
+   const sentences = story.split(/[.!?]+\s+/);
+   const lastSentences = sentences.slice(-3).join('. ') + '.';
+ 
+   const prompt = `
+ Continue the story titled "${title}" by creating the next chapter. Here's where the previous chapter left off:
+ 
+ "${lastSentences}"
+ 
+ Create a new chapter that:
+ 1. Picks up directly from this point
+ 2. Introduces new developments or conflicts
+ 3. Maintains consistency with the established characters and plot
+ 4. Advances the story in an interesting direction
+ 5. Matches the tone and style of the previous content
+ 
+ Important: Do not repeat or expand the previous content. Instead, write a new chapter that continues the story forward.
+ 
+ Begin the new chapter directly without any introductory text or chapter number.`;
+ 
+   try {
+     const result = await model.generateContent(prompt, generationConfig);
+     const response = await result.response;
+     const expandedStory = response.text();
+ 
+     if (!expandedStory) {
+       throw new Error('No expanded story generated');
+     }
+ 
+     return {
+       expandedStory: expandedStory.trim(),
+     };
+   } catch (error) {
+     console.error('Error expanding story:', error);
+     throw error;
+   }
+ }
 
 export default { generateStory, expandStory };

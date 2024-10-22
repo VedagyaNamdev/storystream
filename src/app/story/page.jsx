@@ -43,12 +43,14 @@ export default function StoryPage() {
       });
 
       if (!response.ok) {
+        alert("Failed to expand story");
         throw new Error('Failed to expand story');
       }
 
       const data = await response.json();
       setStoryVersions(prevVersions => [...prevVersions, data.expandedStory]);
     } catch (error) {
+      alert("Error expanding story");
       console.error('Error expanding story:', error);
       // Handle error (e.g., show error message to user)
     } finally {
@@ -79,26 +81,51 @@ export default function StoryPage() {
   const handleDownloadPDF = () => {
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 20;
     
     // Set font and center the title
     doc.setFontSize(18);
     const titleWidth = doc.getTextWidth(storyTitle);
-    doc.text((pageWidth - titleWidth) / 2, 20, storyTitle || "Story");
+    doc.setFont(undefined, 'bold');
+    doc.text((pageWidth - titleWidth) / 2, margin, storyTitle || "Story");
   
     // Loop through storyVersions and add them as chapters
     doc.setFontSize(12);
     
     storyVersions.forEach((version, index) => {
-      if (index !== 0) doc.addPage();  // Add a new page for subsequent chapters
+      if (index !== 0) doc.addPage();
+      
+      let currentY = margin + 10; // Start position after title
       
       // Add chapter heading
       const chapterTitle = `Chapter ${index + 1}`;
+      doc.setFont(undefined, 'bold'); // Set font to bold for chapter title
       const chapterTitleWidth = doc.getTextWidth(chapterTitle);
-      doc.text((pageWidth - chapterTitleWidth) / 2, 30, chapterTitle);  // Center the chapter title
-  
+      doc.text((pageWidth - chapterTitleWidth) / 2, currentY, chapterTitle);
+      doc.setFont(undefined, 'normal'); // Reset font to normal for story text
+      
+      currentY += 10; // Reduced space after chapter title
+      
       // Split the text to fit within the page width
-      const textLines = doc.splitTextToSize(version, pageWidth - 40);  // 40 for margin (20 on each side)
-      doc.text(20, 40, textLines);  // Add the text with a margin of 20
+      const textLines = doc.splitTextToSize(version, pageWidth - (margin * 2));
+      
+      // Calculate lines per page with reduced line spacing
+      const fontSize = doc.getFontSize();
+      const lineHeight = fontSize * 0.55; // Reduced from 1.15 to 1.05 to 0.55 for tighter spacing
+      const maxLinesPerPage = Math.floor((pageHeight - currentY - margin) / lineHeight);
+      
+      // Add text line by line, creating new pages as needed
+      for (let i = 0; i < textLines.length; i++) {
+        // Check if we need a new page
+        if (currentY + lineHeight > pageHeight - margin) {
+          doc.addPage();
+          currentY = margin; // Reset Y position for new page
+        }
+        
+        doc.text(margin, currentY, textLines[i]);
+        currentY += lineHeight;
+      }
     });
     
     // Save the PDF with a meaningful filename
