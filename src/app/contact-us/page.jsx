@@ -69,6 +69,7 @@ const ContactUs = () => {
             onChange={handleChange}
             placeholder="Your Name"
             required
+            className="border border-black rounded"
           />
         </div>
         <div>
@@ -81,6 +82,7 @@ const ContactUs = () => {
             onChange={handleChange}
             placeholder="Your Email"
             required
+            className="border border-black rounded"
           />
         </div>
         <div>
@@ -91,6 +93,7 @@ const ContactUs = () => {
             value={formData.subject}
             onChange={handleChange}
             placeholder="Subject"
+            className="border border-black rounded"
           />
         </div>
         <div>
@@ -103,7 +106,7 @@ const ContactUs = () => {
             placeholder="Your Message"
             required
             type="text" // or 'textarea' for larger inputs
-            className="h-32" // Add height for better visibility
+            className="border border-black rounded h-32" // Add height for better visibility
           />
         </div>
         <Button type="submit" color="primary">

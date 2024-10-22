@@ -5,18 +5,18 @@ import React from 'react';
 
 function Hero() {
   return (
-    <div className='px-6 sm:px-10 md:px-28 lg:px-44 mt-20 h-screen'>
+    <div className='px-6 sm:px-10 md:px-28 lg:px-44 mt-20'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
         
         <div>
           {/* Responsive text sizing */}
           <h2 className='text-4xl sm:text-5xl md:text-6xl lg:text-[70px] text-primary font-extrabold py-6 md:py-10'>
-            Craft Stories in Minutes
+          Turn Your Ideas into Captivating Tales
           </h2>
           
           {/* Responsive font size */}
           <p className='text-lg sm:text-xl md:text-2xl text-primary font-light'>
-            Create fun and personalized stories tailored right to your interest
+          Transform your ideas into captivating tales with our AI-powered story generator. Craft unique adventures in minutes, tailored to your imagination.
           </p>
           
           {/* Button styling for better responsiveness */}
@@ -36,8 +36,8 @@ function Hero() {
           <Image
             src="/hero.png"
             alt="hero"
-            width={400}
-            height={400}
+            width={500}
+            height={500}
             className="hero-image"
           />
         </div>

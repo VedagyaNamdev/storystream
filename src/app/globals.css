@@ -2,8 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* :root {
+  background-color:hsla(281,100%,50%,1);
+  background-image:
+  radial-gradient(at 40% 20%, hsla(156,100%,74%,1) 0px, transparent 50%),
+  radial-gradient(at 100% 0%, hsla(317,100%,56%,1) 0px, transparent 50%),
+  radial-gradient(at 0% 50%, hsla(123,100%,93%,1) 0px, transparent 50%),
+  radial-gradient(at 80% 50%, hsla(108,100%,76%,1) 0px, transparent 50%),
+  radial-gradient(at 0% 100%, hsla(150,100%,77%,1) 0px, transparent 50%),
+  radial-gradient(at 80% 100%, hsla(10,100%,70%,1) 0px, transparent 50%),
+  radial-gradient(at 0% 0%, hsla(111,100%,76%,1) 0px, transparent 50%);
+
+  background-repeat: no-repeat;
+  background-size:auto;
+  min-height: 100vh;
+} */
+
+
+
 body {
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: hsla(281,100%,50%,1);
+  background-image: 
+    radial-gradient(at 40% 20%, hsla(156,100%,74%,1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(317,100%,56%,1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(123,100%,93%,1) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, hsla(108,100%,76%,1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(150,100%,77%,1) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, hsla(10,100%,70%,1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(111,100%,76%,1) 0px, transparent 50%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: 100% 100%;
 }
 
 @layer utilities {
@@ -19,20 +53,69 @@ body {
 }
 
 .hero-image {
-  width: 400px;
-  height: 400px;
-  display: none; /* This hides the image for small screens */
+  width: 300px;
+  height: 280px;
+  display: block; /* This hides the image for small screens */
+  border-radius: 20%; /* Optional: This gives a soft, circular look */
+  box-shadow: 0 0 40px 20px rgba(255, 255, 255, 0.3); /* Blurry shadow around the image */
+  animation: pulsate 3s infinite; /* Add pulsate animation */
+  transition: box-shadow 0.3s ease-in-out;
+  margin: 20px;
 }
 
 @media (min-width: 768px) {
   .hero-image {
+    width: 500px;
+    height: 480px;
     display: block;
     border-radius: 20%; /* Optional: This gives a soft, circular look */
-    box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.2); /* Blurry shadow around the image */
+    box-shadow: 0 0 40px 20px rgba(255, 255, 255, 0.3); /* Blurry shadow around the image */
+    animation: pulsate 3s infinite; /* Add pulsate animation */
     transition: box-shadow 0.3s ease-in-out;
   }
+
   .hero-image:hover {
-    box-shadow: 0 0 60px 30px rgba(0, 0, 0, 0.3); /* Intensifies blur on hover */
+    box-shadow: 0 0 60px 30px rgba(255, 255, 255, 0.3); /* Intensifies blur on hover */
   }
 }
 
+/* Define the pulsate animation */
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 40px 20px rgba(255, 255, 80, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 60px 30px rgba(255, 255, 80, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 40px 20px rgba(255, 255, 80, 0.3);
+  }
+}
+
+/* Hide spinner for Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Reset autofill styles for Chrome and other browsers */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px rgb(225, 155, 228) inset !important;
+  -webkit-text-fill-color: black !important;
+}
+input:-moz-autofill {
+  box-shadow: 0 0 0px 1000px rgb(225, 155, 228) inset !important;
+  -moz-text-fill-color: black !important;
+}
+input:-ms-autofill {
+  box-shadow: 0 0 0px 1000px rgb(225, 155, 228) inset !important;
+  -ms-text-fill-color: black !important;
+}
+
+
+
+.transparent-navbar {
+  background-color: transparent !important; /* Make the navbar background transparent */
+  backdrop-filter: blur(10px); /* Optional: adds a blur effect */
+}

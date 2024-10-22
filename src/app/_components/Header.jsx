@@ -28,10 +28,10 @@ function Header() {
       name: 'Create Story',
       path: '/create_story'
     },
-    {
-      name: 'Explore Story',
-      path: '/explore'
-    },
+    // {
+    //   name: 'Explore Story',
+    //   path: '/explore'
+    // },
     {
       name: 'Contact Us',
       path: '/contact-us'
@@ -41,22 +41,27 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Navbar maxWidth='full' onMenuOpenChange={setIsMenuOpen}>
+    <Navbar className="transparent-navbar" maxWidth='full' onMenuOpenChange={setIsMenuOpen}>
         <NavbarContent>
           <NavbarMenuToggle
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               className='sm:hidden'
           />
             <NavbarBrand>
-                {/* Uncomment this line if you want to use a logo */}
+
+                <Link href={'/'}>
                 <Image src={'/logo.svg'} alt='logo' width={40} height={40}/>
-                <h2 className='font-bold text-2xl text-primary ml-3 hidden sm:block'>StoryStream</h2>
+                </Link>
+                <Link href={'/'}>
+                <h2 className='font-bold text-2xl text-primary ml-3 lg:block hidden'>StoryStream</h2>
+                </Link>
+
             </NavbarBrand>
         </NavbarContent>
 
         <NavbarContent justify='center' className='hidden sm:flex'>
           {MenuList.map((item, index) => (
-            <NavbarItem key={index} className='text-xl text-primary font-medium mx-2'>
+            <NavbarItem key={index} className='text-xl text-primary font-bold mx-2'>
               <Link href={item.path}>
                   {item.name}
               </Link>

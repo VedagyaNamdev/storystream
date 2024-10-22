@@ -6,7 +6,9 @@ export default function Home() {
   return (
     <div className="App">
       <Header />
-      <StorytellingPlatform />
+      <div className='h-full pb-20'>
+        <StorytellingPlatform />
+      </div>
     </div>
   );
 }
