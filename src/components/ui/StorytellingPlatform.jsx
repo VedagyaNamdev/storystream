@@ -62,7 +62,6 @@ const StorytellingPlatform = () => {
       
       const { title, story } = await generateStory(storyData);
       
-      // Set the title and story state
       setStoryTitle(title);
       setStory(story);
       
